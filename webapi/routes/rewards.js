@@ -32,6 +32,9 @@ router.get('/', function(req, res) {
 
 
   //res.send(JSON.stringify(rewards));
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Content-Type', 'application/json');
   res.json(rewards);
 });
