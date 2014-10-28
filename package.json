@@ -1,0 +1,22 @@
+{
+  "name": "crp-webapi",
+  "version": "1.0.0",
+  "description": "crp-webapi with express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://manuelrojas@github.com/Heart-Code/crp-webapi.git"
+  },
+  "author": "Manuel Rojas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Heart-Code/crp-webapi/issues"
+  },
+  "homepage": "https://github.com/Heart-Code/crp-webapi",
+  "dependencies": {
+    "express": "^4.10.0"
+  }
+}
