@@ -5,12 +5,6 @@ Web api for the CRP using express Node.js
 
 Download the code from https://github.com/Heart-Code/crp-webapi
 
-* cd /crp-webapi
- * (sudo) npm install
-* cd /webapi
- * (sudo) npm install
+Do `npm install` and then `node app.js`
 
-*Finally you just need to run on the terminal:*
-set DEBUG=webapi & node .\bin\www
-
-Then, load http://localhost:3000/ in a browser to see the output.
+Then, load http://localhost:3000/rewards/init in a browser to generate a sample data and then go to http://localhost:3000/rewards to see the rewards listed.
