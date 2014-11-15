@@ -11,13 +11,13 @@ class RewardCtrl
 		Reward.find (err, list) ->
 			if list.length < 1
 				rewards = [
-					new Reward { name: 'This is a reward', affiliate: 'MegaTop', points: 35, img: 'http://placehold.it/50x50' }
-					new Reward { name: 'Freezer', affiliate: 'Grolo', points: 325, img: 'http://placehold.it/50x50' }
-					new Reward { name: 'Oven', affiliate: 'Zamona', points: 150, img: 'http://placehold.it/50x50' }
-					new Reward { name: 'Ants Case', affiliate: 'Akimals', points: 52, img: 'http://placehold.it/50x50' }
-					new Reward { name: 'Hawaiian Pizza', affiliate: 'Mama Johanna', points: 20, img: 'http://placehold.it/50x50' }
-					new Reward { name: 'Soda', affiliate: 'Zote', points: 12, img: 'http://placehold.it/50x50' }
-					new Reward { name: 'Toothpaste', affiliate: 'Roth', points: 5, img: 'http://placehold.it/50x50' }
+					new Reward { id: mongoose.Types.ObjectId(), name: 'This is a reward', price: '15', points: 35, description: '', img: 'http://placehold.it/50x50' }
+					new Reward { id: mongoose.Types.ObjectId(), name: 'Freezer', price: '300', points: 325, description: '', img: 'http://placehold.it/50x50' },
+					new Reward { id: mongoose.Types.ObjectId(), name: 'Oven', price: '150', points: 150, description: '', img: 'http://placehold.it/50x50' },
+					new Reward { id: mongoose.Types.ObjectId(), name: 'Ants Case', price: '23', points: 52, description: '', img: 'http://placehold.it/50x50' },
+					new Reward { id: mongoose.Types.ObjectId(), name: 'Hawaiian Pizza', price: '6', points: 20, description: '', img: 'http://placehold.it/50x50' },
+					new Reward { id: mongoose.Types.ObjectId(), name: 'Soda', price: '1.50', points: 12, description: '', img: 'http://placehold.it/50x50' },
+					new Reward { id: mongoose.Types.ObjectId(), name: 'Toothpaste', price: '0.75', points: 5, description: '', img: 'http://placehold.it/50x50' }
 				]
 				
 				for reward in rewards			
