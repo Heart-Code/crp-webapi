@@ -1,3 +1,4 @@
+mongoose = require 'mongoose'
 Affiliate = require '../models/Affiliate'
 
 class AffiliateCtrl
@@ -10,13 +11,13 @@ class AffiliateCtrl
 	@setUp: (req, res, next) ->
 		Affiliate.find (err, list) ->
 			if list.length < 1
-				managers = [
-					new Affiliate { id: mongoose.Types.ObjectId(), description: 'Administrator' },
-					new Affiliate { id: mongoose.Types.ObjectId(), description: 'Affiliate Manager' },
-					new Affiliate { id: mongoose.Types.ObjectId(), description: 'Clerk' }
+				affiliates = [
+					new Affiliate { id: mongoose.Types.ObjectId(), name: 'Taco Bell' },
+					new Affiliate { id: mongoose.Types.ObjectId(), name: 'Orlando' },
+					new Affiliate { id: mongoose.Types.ObjectId(), name: 'Adidas' }
 				]
 				
-				for affiliate in affiliates			
+				for affiliate in affiliates
 					affiliate.save()
 
 				res.send 'Success'
