@@ -47,5 +47,6 @@ router.route '/oauth2/token'
 app.use '/', router
 # Here we would add new versions if we needed one. e.g. app.use '/v2', routerv2
 
-app.listen 3000, ->
-	console.log '%s listening at %s', app.name, app.url
+port = 3000
+app.listen port, ->
+	console.log "CRP Web API service is listening at localhost:#{port}"
