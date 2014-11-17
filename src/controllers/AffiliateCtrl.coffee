@@ -2,11 +2,10 @@ mongoose = require 'mongoose'
 Affiliate = require '../models/Affiliate'
 
 class AffiliateCtrl
-	@getAll: (req, res, next) ->
+	@getAffiliates: (req, res) ->
+		console.log req.user
 		Affiliate.find {}, '-_id -__v', (err, list) ->
 			res.send list
-
-		next()
 
 	@setUp: (req, res, next) ->
 		Affiliate.find (err, list) ->

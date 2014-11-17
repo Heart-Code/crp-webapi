@@ -1,43 +1,52 @@
-AffiliateCtrl = require './controller/AffiliateCtrl'
-ClientCtrl = require './controller/ClientCtrl'
-ConfigurationCtrl = require './controller/ConfigurationCtrl'
-ManagerCtrl = require './controller/ManagerCtrl'
-RewardCtrl = require './controller/RewardCtrl'
-RoleCtrl = require './controller/RoleCtrl'
+AuthenticationCtrl = require './controllers/AuthenticationCtrl'
+OAuth2Ctrl = require './controllers/OAuth2Ctrl'
 
-restify = require 'restify'
-server = restify.createServer name: 'CRP Web API'
+AffiliateCtrl = require './controllers/AffiliateCtrl'
+ClientCtrl = require './controllers/ClientCtrl'
+UserCtrl = require './controllers/UserCtrl'
+ConfigurationCtrl = require './controllers/ConfigurationCtrl'
+ManagerCtrl = require './controllers/ManagerCtrl'
+RewardCtrl = require './controllers/RewardCtrl'
+RoleCtrl = require './controllers/RoleCtrl'
+
+express = require 'express'
+cors = require 'cors'
+passport = require 'passport'
 mongoose = require 'mongoose'
+bodyParser = require 'body-parser'
 
-# Allow CORS
-server.use restify.fullResponse()
+app = express()
+
+# Middleware
+app.use cors()
+app.use bodyParser.urlencoded extended: true
+app.use passport.initialize()
 
 # Connect to mongoose
 db = mongoose.connect 'mongodb://localhost/crp'
 
-# Routing for affiliates
-server.get '/affiliates', AffiliateCtrl.getAll
-server.get '/affiliates/init', AffiliateCtrl.setUp
+router = express.Router()
 
-# Routing for clients
-server.get '/clients', ClientCtrl.getAll
-server.get '/clients/init', ClientCtrl.setUp
+router.route '/user'
+	.post UserCtrl.postUser
+	.get UserCtrl.verify
+router.route '/users'
+	.get UserCtrl.getUsers
 
-### Routing for configurations
-server.get '/configurations', ConfigurationCtrl.getAll
-server.get '/configurations/init', ConfigurationCtrl.setUp
+router.route '/client'
+	.post ClientCtrl.postClient
+router.route '/clients'
+	.get ClientCtrl.getClients
 
-# Routing for managers
-server.get '/managers', ManagerCtrl.getAll
-server.get '/managers/init', ManagerCtrl.setUp
+router.route '/affiliates'
+	.get AuthenticationCtrl.isAuthenticated, AffiliateCtrl.getAffiliates
 
-# Routing for rewards
-server.get '/rewards', RewardCtrl.getAll
-server.get '/rewards/init', RewardCtrl.setUp
+router.route '/oauth2/token'
+	.post AuthenticationCtrl.isClientAuthenticated, OAuth2Ctrl.token
 
-# Routing for roles
-server.get '/roles', RoleCtrl.getAll
-server.get '/roles/init', RoleCtrl.setUp###
+app.use '/', router
+# Here we would add new versions if we needed one. e.g. app.use '/v2', routerv2
 
-server.listen 3000, ->
-	console.log '%s listening at %s', server.name, server.url
+port = 3000
+app.listen port, ->
+	console.log "CRP Web API service is listening at localhost:#{port}"

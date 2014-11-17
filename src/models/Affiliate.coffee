@@ -6,9 +6,10 @@ AffiliateSchema = new Schema
 	managers:
 		type: Array
 		default: []
-	rewards:
-		type: Array
-		default: []
+	rewards: [
+		type: Schema.Types.ObjectId
+		ref: 'Reward'
+	]
 	pointsPerDollar: Number
 	siteTemplate: String #This is not in the requirements.
 	type:
@@ -18,8 +19,5 @@ AffiliateSchema = new Schema
 		phones:
 			type: Array
 			default: []
-				
-mongoose.model 'Affiliate', AffiliateSchema
-Affiliate = mongoose.model 'Affiliate'
 
-module.exports = Affiliate
+module.exports = mongoose.model 'Affiliate', AffiliateSchema

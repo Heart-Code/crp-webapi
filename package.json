@@ -9,8 +9,16 @@
   "author": "HeartCode",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.9.2",
     "coffee-script": "^1.8.0",
+    "cors": "^2.5.2",
+    "express": "^4.10.2",
     "mongoose": "^3.8.18",
+    "oauth2orize": "^1.0.1",
+    "passport": "^0.2.1",
+    "passport-http": "^0.2.2",
+    "passport-http-bearer": "^1.0.1",
     "restify": "^2.8.3"
   }
 }
