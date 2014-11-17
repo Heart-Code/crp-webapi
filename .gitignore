@@ -1,2 +1,8 @@
-webapi/node_modules/
 node_modules/
+
+# Ignore this ones, right now are used to debug with WebStorm while I figure how to debug without transpiling
+src/**/*.js
+src/**/*.map
+
+# Ignore WebStorm configuration files (I don't want to make it a dependency)
+.idea
