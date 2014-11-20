@@ -4,7 +4,7 @@
   "description": "Web API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers coffee:coffee-script/register"
   },
   "author": "HeartCode",
   "license": "MIT",
@@ -20,5 +20,11 @@
     "passport-http": "^0.2.2",
     "passport-http-bearer": "^1.0.1",
     "restify": "^2.8.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.0.1",
+    "nock": "^0.50.0",
+    "should": "^4.3.0",
+    "sinon": "^1.12.1"
   }
 }

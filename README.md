@@ -1,3 +1,5 @@
+[ ![Codeship Status for Heart-Code/crp-webapi](https://codeship.com/projects/1c59d070-532c-0132-5f14-4e2e0d6a7c65/status)](https://codeship.com/projects/48884)
+
 ## CRP Web API
 -----
 
