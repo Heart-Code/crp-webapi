@@ -67,7 +67,6 @@ server.exchange oauth2oarize.exchange.password (client, email, password, scope, 
 
       at.save (err) ->
         if err then return callback err
-        console.log token
         callback null, token
 
 class OAuth2Ctrl
