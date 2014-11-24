@@ -30,7 +30,7 @@ router = express.Router()
 
 router.route '/user'
 	.post UserCtrl.postUser
-	.get UserCtrl.verify
+	.get AuthenticationCtrl.isAuthenticated, UserCtrl.getCurrentUser
 router.route '/users'
 	.get UserCtrl.getUsers
 
