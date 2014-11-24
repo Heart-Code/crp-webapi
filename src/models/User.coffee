@@ -1,4 +1,6 @@
 bcrypt = require 'bcrypt-nodejs'
+gravatar = require 'gravatar'
+
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
@@ -16,13 +18,14 @@ UserSchema = new Schema
 		first: String
 		last: String
 	phone: String
+	points:
+		type: Number
+		default: 0
+	picture: String
 	rewardsRedeemed: [
 		type: Schema.Types.ObjectId
 		ref: 'Reward'
 	]
-	points:
-		type: Number
-		default: 0
 	dateJoined:
 		type: Date
 		default: Date.now
@@ -31,7 +34,19 @@ UserSchema = new Schema
 
 UserSchema
 	.virtual 'name.full'
-	.get ->	"#{@name.first} #{@name.last}"
+	.get ->
+		if @name.first?
+			return "#{@name.first} #{@name.last}"
+		else
+			return undefined
+
+UserSchema
+	.virtual 'avatar'
+	.get ->
+		if @picture? && @picture.trim() isnt ''
+			return @picture
+		else
+			return gravatar.url @email, s: '160', d: 'retro', r: 'pg'
 
 UserSchema.pre 'save', (callback) ->
 	user = this
@@ -43,6 +58,13 @@ UserSchema.pre 'save', (callback) ->
 			if err then return callback err
 			user.password = hash
 			callback()
+
+UserSchema.set 'toJSON',
+	virtuals: true # We want the response to include our virtuals
+
+UserSchema.options.toJSON.transform = (doc, ret, options) ->
+		if not ret._id? then delete ret.id
+		ret
 
 UserSchema.methods.passwordMatch = (password, callback) ->
 	bcrypt.compare password, @password, (err, isMatch) ->
