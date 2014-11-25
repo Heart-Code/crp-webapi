@@ -71,4 +71,10 @@ UserSchema.methods.passwordMatch = (password, callback) ->
 		if err then return callback err
 		callback null, isMatch
 
+# This is for prettying the error message when repeating email, this should be the default on mongoose
+# There's a request (https://github.com/LearnBoost/mongoose/issues/2284), use this until it's implemented
+# Besides this assigns the type as "user defined" we want something more specific
+# TODO: Add to all schemas (?)
+UserSchema.plugin require('mongoose-unique-validator')
+
 module.exports = mongoose.model 'User', UserSchema

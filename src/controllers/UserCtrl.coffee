@@ -8,6 +8,8 @@ class UserCtrl
 
 		user.save (err) ->
 			if err then return res.send err
+
+			# FIXME: Remove password and _id from returning (kindof critical)
 			res.send user
 	@getUsers: (req, res) ->
 		User.find {}, '-_id -__v', (err, users) ->
