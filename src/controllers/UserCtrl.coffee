@@ -32,7 +32,7 @@ class UserCtrl
 		user.password = req.body.password
 		user.save (err) ->
 			if err then return res.send err
-			res.send user
+			res.send message: 'Password updated'
 
 
 module.exports = UserCtrl
