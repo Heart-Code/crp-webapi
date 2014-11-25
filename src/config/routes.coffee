@@ -19,6 +19,8 @@ router.route '/user'
   .get AuthenticationCtrl.isAuthenticated, UserCtrl.getCurrentUser
 router.route '/users'
   .get UserCtrl.getUsers
+router.route '/user/password'
+  .patch AuthenticationCtrl.isAuthenticated, UserCtrl.updateUserPassword
 
 # Client
 router.route '/client'
