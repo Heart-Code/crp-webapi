@@ -17,10 +17,9 @@ router = Router()
 router.route '/user'
   .post UserCtrl.postUser
   .get AuthenticationCtrl.isAuthenticated, UserCtrl.getCurrentUser
+  .patch AuthenticationCtrl.isAuthenticated, UserCtrl.patchUser
 router.route '/users'
   .get UserCtrl.getUsers
-router.route '/user/password'
-  .patch AuthenticationCtrl.isAuthenticated, UserCtrl.updateUserPassword
 
 # Client
 router.route '/client'
