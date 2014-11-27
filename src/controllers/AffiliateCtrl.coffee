@@ -3,9 +3,19 @@ Affiliate = require '../models/Affiliate'
 
 class AffiliateCtrl
 	@getAffiliates: (req, res) ->
-		console.log req.user
 		Affiliate.find {}, '-_id -__v', (err, list) ->
 			res.send list
+
+	@postAffiliate: (req, res) ->
+		affiliate = new Affiliate()
+		affiliate.name = req.body.name
+		affiliate.description = req.body.description
+		affiliate.pointsPerDollar = req.body.pointsPerDollar
+		affiliate.website = req.body.website
+
+		affiliate.save (err) ->
+			if err then return res.send err
+			res.send affiliate
 
 	@setUp: (req, res, next) ->
 		Affiliate.find (err, list) ->

@@ -6,10 +6,9 @@ AffiliateSchema = new Schema
 		type: String
 		required: true
 	description: String
-	managers:
-		type: Array
-		default: []
-	pointsPerDollar: Number
+	pointsPerDollar:
+		type: Number
+		required: true
 	website: String
 	rewards: [
 		type: Schema.Types.ObjectId

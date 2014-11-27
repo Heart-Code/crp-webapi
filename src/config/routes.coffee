@@ -5,9 +5,9 @@ AffiliateCtrl = require '../controllers/AffiliateCtrl'
 ClientCtrl = require '../controllers/ClientCtrl'
 UserCtrl = require '../controllers/UserCtrl'
 ConfigurationCtrl = require '../controllers/ConfigurationCtrl'
-ManagerCtrl = require '../controllers/ManagerCtrl'
 RewardCtrl = require '../controllers/RewardCtrl'
 RoleCtrl = require '../controllers/RoleCtrl'
+PointsCtrl = require '../controllers/PointsCtrl'
 
 {Router} = require 'express'
 
@@ -28,8 +28,14 @@ router.route '/clients'
   .get ClientCtrl.getClients
 
 # Affiliate
+router.route '/affiliate'
+  .post AffiliateCtrl.postAffiliate
 router.route '/affiliates'
   .get AuthenticationCtrl.isAuthenticated, AffiliateCtrl.getAffiliates
+
+# Points
+router.route '/points'
+  .post PointsCtrl.postPoints
 
 # OAuth
 router.route '/oauth2/token'
