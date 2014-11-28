@@ -22,15 +22,13 @@ UserSchema = new Schema
 		type: Number
 		default: 0
 	picture: String
-	rewardsRedeemed: [
-		type: Schema.Types.ObjectId
-		ref: 'Reward'
-	]
+	receipts:
+		type: [Schema.Types.ObjectId]
+		ref: 'Receipt'
 	dateJoined:
 		type: Date
 		default: Date.now
 	lastSignIn: Date
-	status: String
 
 UserSchema
 	.virtual 'name.full'
@@ -70,6 +68,9 @@ UserSchema.methods.passwordMatch = (password, callback) ->
 	bcrypt.compare password, @password, (err, isMatch) ->
 		if err then return callback err
 		callback null, isMatch
+
+UserSchema.methods.passwordMatchSync = (password) ->
+	return bcrypt.compareSync password, @password
 
 # This is for prettying the error message when repeating email, this should be the default on mongoose
 # There's a request (https://github.com/LearnBoost/mongoose/issues/2284), use this until it's implemented
