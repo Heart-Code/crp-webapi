@@ -4,10 +4,9 @@ OAuth2Ctrl = require '../controllers/OAuth2Ctrl'
 AffiliateCtrl = require '../controllers/AffiliateCtrl'
 ClientCtrl = require '../controllers/ClientCtrl'
 UserCtrl = require '../controllers/UserCtrl'
-ConfigurationCtrl = require '../controllers/ConfigurationCtrl'
 RewardCtrl = require '../controllers/RewardCtrl'
-RoleCtrl = require '../controllers/RoleCtrl'
 PointsCtrl = require '../controllers/PointsCtrl'
+ReceiptCtrl = require '../controllers/ReceiptCtrl'
 
 {Router} = require 'express'
 
@@ -36,6 +35,10 @@ router.route '/affiliates'
 # Points
 router.route '/points'
   .post PointsCtrl.postPoints
+
+# Receipts
+router.route '/receipts'
+  .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipts
 
 # OAuth
 router.route '/oauth2/token'
