@@ -20,6 +20,13 @@ class PointsCtrl
   @addPoints: (req, res) ->
     Points.findOne code: req.params.code, (err, points) ->
       if err then return res.send err
+      if points is null
+        error =
+          errors:
+            code:
+              type: 'invalid code'
+              value: req.params.code
+        return res.send error
       if points.user?
         error = new MongooseError.ValidationError points
         error.errors.user = new MongooseError.ValidatorError 'user', '', 'points already exchanged', req.user.id

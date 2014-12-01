@@ -32,9 +32,11 @@ router.route '/affiliate'
 router.route '/affiliates'
   .get AffiliateCtrl.getAffiliates
 
-# Receipts
+# Rewards
 router.route '/rewards'
   .get RewardCtrl.getRewards
+router.route '/reward/:id/buy'
+  .post AuthenticationCtrl.isAuthenticated, RewardCtrl.buyReward
 
 # Points
 router.route '/points'
