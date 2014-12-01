@@ -30,11 +30,18 @@ router.route '/clients'
 router.route '/affiliate'
   .post AffiliateCtrl.postAffiliate
 router.route '/affiliates'
-  .get AuthenticationCtrl.isAuthenticated, AffiliateCtrl.getAffiliates
+  .get AffiliateCtrl.getAffiliates
+
+# Receipts
+router.route '/rewards'
+  .get RewardCtrl.getRewards
 
 # Points
 router.route '/points'
   .post PointsCtrl.postPoints
+
+router.route '/points/:code'
+  .post AuthenticationCtrl.isAuthenticated, PointsCtrl.addPoints
 
 # Receipts
 router.route '/receipts'
