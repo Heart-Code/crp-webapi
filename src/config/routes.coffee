@@ -46,6 +46,8 @@ router.route '/points/:code'
 # Receipts
 router.route '/receipts'
   .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipts
+router.route '/receipt/:id'
+  .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipt
 
 # OAuth
 router.route '/oauth2/token'
