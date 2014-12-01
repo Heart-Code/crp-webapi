@@ -11,17 +11,15 @@ RewardSchema = new Schema
 	description: String
 	picture: String
 	expires: Date
-	comments: [
-		body: String
+	comments:
+		body: [String]
 		date: Date
-	]
 	affiliate:
 		type: Schema.Types.ObjectId
 		required: true
-	pointOfSales: [
-		type: Schema.Types.ObjectId
+	pointOfSales:
+		type: [Schema.Types.ObjectId]
 		ref: 'PointOfSale'
-	]
 
 mongoose.model 'Reward', RewardSchema
 Reward = mongoose.model 'Reward'

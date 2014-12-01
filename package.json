@@ -5,7 +5,8 @@
   "main": "app.coffee",
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register",
-    "start": "coffee app.coffee"
+    "start": "coffee app.coffee",
+    "init_db": "coffee init_db.coffee"
   },
   "author": "HeartCode",
   "license": "MIT",
@@ -26,6 +27,7 @@
     "yargs": "^1.3.3"
   },
   "devDependencies": {
+    "colors": "^1.0.3",
     "mocha": "^2.0.1",
     "nock": "^0.50.0",
     "should": "^4.3.0",
