@@ -4,11 +4,11 @@ Receipt = require '../models/Receipt'
 
 class RewardCtrl
 	@getRewards: (req, res) ->
-		Reward.find {}, '-_id -__v', (err, list) ->
+		Reward.find {}, '-__v', (err, list) ->
 			res.send list
 
 	@getRewardsByAffiliate: (req, res) ->
-		Reward.find affiliate: req.body.affiliate, '-_id -__v', (err, list) ->
+		Reward.find affiliate: req.body.affiliate, '-__v', (err, list) ->
 			res.send list
 
 	@buyReward: (req, res) ->
