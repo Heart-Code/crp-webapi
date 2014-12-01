@@ -10,13 +10,12 @@ AffiliateSchema = new Schema
 		type: Number
 		required: true
 	website: String
-	rewards: [
-		type: Schema.Types.ObjectId
+	picture: String
+	rewards:
+		type: [Schema.Types.ObjectId]
 		ref: 'Reward'
-	]
-	pointOfSales: [
-		type: Schema.Types.ObjectId
+	pointOfSales:
+		type: [Schema.Types.ObjectId]
 		ref: 'PointOfSale'
-	]
 
 module.exports = mongoose.model 'Affiliate', AffiliateSchema

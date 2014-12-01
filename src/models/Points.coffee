@@ -20,6 +20,10 @@ PointsSchema = new Schema
   created:
     type: Date
     default: Date.now
+  # If the user is not undefined then the points have been exchanged
+  user:
+    type: Schema.Types.ObjectId
+    ref: 'User'
 
 PointsSchema.plugin require('mongoose-unique-validator')
 
