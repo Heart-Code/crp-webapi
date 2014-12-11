@@ -14,6 +14,9 @@ ReceiptSchema = new Schema
     type: String
     unique: true
     required: true
+  exchanged:
+    type: Boolean
+    default: false
   created:
     type: Date
     default: Date.now

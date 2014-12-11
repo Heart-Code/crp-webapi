@@ -4,7 +4,7 @@ Receipt = require '../models/Receipt'
 class ReceiptCtrl
   @getReceipt: (req, res) ->
     Receipt
-      .findOne user: req.user.id, _id: req.params.id , '-_id -__v'
+      .findOne user: req.user.id, _id: req.params.id, exchanged: false, '-__v'
       .populate 'reward', '-_id -__v'
       .exec (err, receipt) ->
         if err then return res.send err
@@ -13,11 +13,19 @@ class ReceiptCtrl
 
   @getReceipts: (req, res) ->
     Receipt
-      .find user: req.user.id, '-_id -__v'
+      .find user: req.user.id, exchanged: false,  '-__v'
       .populate 'reward', '-_id -__v'
       .exec (err, list) ->
         if err then return res.send err
         # FIXME: Remove user
         res.send list
+
+  @exchangeReceipt: (req, res) ->
+    Receipt.findOne code: req.body.code, (err, receipt) ->
+      if err then return res.send err
+      receipt.exchanged = true
+      receipt.save (err) ->
+        if err then return res.send err
+        res.send message: 'success'
 
 module.exports = ReceiptCtrl
