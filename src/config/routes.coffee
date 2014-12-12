@@ -48,7 +48,7 @@ router.route '/points/:code'
 # Receipts
 router.route '/receipts'
   .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipts
-router.route '/receipt/:id'
+router.route '/receipt/:code'
   .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipt
 router.route '/receipt/exchange/:code'
   .get ReceiptCtrl.exchangeReceipt

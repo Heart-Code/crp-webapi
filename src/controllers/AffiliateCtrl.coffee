@@ -3,7 +3,7 @@ Affiliate = require '../models/Affiliate'
 
 class AffiliateCtrl
 	@getAffiliates: (req, res) ->
-		Affiliate.find {}, '-_id -__v', (err, list) ->
+		Affiliate.find {}, '-__v', (err, list) ->
 			res.send list
 
 	@postAffiliate: (req, res) ->
