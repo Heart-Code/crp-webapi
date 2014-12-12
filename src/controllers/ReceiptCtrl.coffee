@@ -4,7 +4,7 @@ Receipt = require '../models/Receipt'
 class ReceiptCtrl
   @getReceipt: (req, res) ->
     Receipt
-      .findOne user: req.user.id, _id: req.params.id, exchanged: false, '-__v'
+      .findOne user: req.user.id, code: req.params.code, exchanged: false, '-__v'
       .populate 'reward', '-_id -__v'
       .exec (err, receipt) ->
         if err then return res.send err
