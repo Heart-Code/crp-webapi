@@ -21,11 +21,18 @@ class ReceiptCtrl
         res.send list
 
   @exchangeReceipt: (req, res) ->
-    Receipt.findOne code: req.body.code, (err, receipt) ->
-      if err then return res.send err
-      receipt.exchanged = true
-      receipt.save (err) ->
+    Receipt
+      .findOne code: req.params.code
+      .populate 'user'
+      .exec (err, receipt) ->
         if err then return res.send err
-        res.send message: 'success'
+        receipt.exchanged = true
+        receipt.save (err) ->
+          if err then return res.send err
+          res.send
+            message: 'success'
+            code: receipt.code
+            user: receipt.user.email
+            exchanged: receipt.exchanged
 
 module.exports = ReceiptCtrl

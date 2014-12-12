@@ -48,8 +48,8 @@ db = mongoose.connect config.mongo.db, ->
   affiliates = [
     { "_id" : ObjectId("5476a00f5afcef905730e687"), "name" : "Taco Bell", "pointsPerDollar" : 0.2, "website" : "http://www.tacobell.com", "picture": "pics/taco_bell.jpg", "description" : "Ding dong ding dong. Arf arf!" }
     { "_id" : ObjectId("547cb05f3eed2d2eee762e95"), "name" : "Adidas", "pointsPerDollar" : 0.6, "website" : "http://www.adidas.com", "picture": "pics/adidas.jpg", "description" : "Sports store and more more more." }
-    { "_id" : ObjectId("547cb05fbcefb3f592de9419"), "name" : "Orlando", "pointsPerDollar" : 0.3, "website" : "http://www.orlando.com", "picture": "pics/orlando.jpg", "description" : "What's this?, seriously." }
-    { "_id" : ObjectId("547cb05ffe5753a43a99d221"), "name" : "Hooters", "pointsPerDollar" : 0.25, "website" : "http://www.hooters.com", "picture": "", "description" : "You're gonna like it." }
+    { "_id" : ObjectId("547cb05fbcefb3f592de9419"), "name" : "EPA", "pointsPerDollar" : 0.3, "website" : "http://www.epa.com", "picture": "pics/EPA.jpg", "description" : "Hardware store." }
+    { "_id" : ObjectId("547cb05ffe5753a43a99d221"), "name" : "Hooters", "pointsPerDollar" : 0.25, "website" : "http://www.hooters.com", "picture": "pics/hooters.jpg", "description" : "You're gonna like it." }
   ]
 
   Affiliate.create affiliates, ->

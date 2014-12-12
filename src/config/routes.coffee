@@ -50,8 +50,8 @@ router.route '/receipts'
   .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipts
 router.route '/receipt/:id'
   .get AuthenticationCtrl.isAuthenticated, ReceiptCtrl.getReceipt
-router.route '/receipt/exchange/'
-  .post ReceiptCtrl.exchangeReceipt
+router.route '/receipt/exchange/:code'
+  .get ReceiptCtrl.exchangeReceipt
 
 # OAuth
 router.route '/oauth2/token'
