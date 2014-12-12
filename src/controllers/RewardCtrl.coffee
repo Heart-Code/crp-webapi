@@ -23,6 +23,6 @@ class RewardCtrl
 
 			receipt.save (err) ->
 				if err then return res.send err
-				res.send receipt: id: receipt.id
+				res.send receipt: code: receipt.code
 
 module.exports = RewardCtrl
