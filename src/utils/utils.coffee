@@ -1,6 +1,9 @@
-exports.uid = (len) ->
+uidCaps = (len) ->
+  uid len, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+uid = (len, chars) ->
   buf = []
-  chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  chars = chars or "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
   charlen = chars.length
   i = 0
 
@@ -11,3 +14,5 @@ exports.uid = (len) ->
 
 getRandomInt = (min, max) ->
   Math.floor(Math.random() * (max - min + 1)) + min
+
+module.exports = {uid, uidCaps}

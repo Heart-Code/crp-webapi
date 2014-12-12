@@ -2,9 +2,11 @@
   "name": "webapi",
   "version": "0.0.0",
   "description": "Web API",
-  "main": "app.js",
+  "main": "app.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers coffee:coffee-script/register",
+    "start": "coffee app.coffee",
+    "init_db": "coffee init_db.coffee"
   },
   "author": "HeartCode",
   "license": "MIT",
@@ -14,11 +16,22 @@
     "coffee-script": "^1.8.0",
     "cors": "^2.5.2",
     "express": "^4.10.2",
+    "gravatar": "^1.1.0",
     "mongoose": "^3.8.18",
+    "mongoose-unique-validator": "^0.4.1",
     "oauth2orize": "^1.0.1",
     "passport": "^0.2.1",
     "passport-http": "^0.2.2",
     "passport-http-bearer": "^1.0.1",
-    "restify": "^2.8.3"
+    "restify": "^2.8.3",
+    "yargs": "^1.3.3"
+  },
+  "devDependencies": {
+    "colors": "^1.0.3",
+    "mocha": "^2.0.1",
+    "nock": "^0.50.0",
+    "should": "^4.3.0",
+    "sinon": "^1.12.1",
+    "supertest": "^0.15.0"
   }
 }

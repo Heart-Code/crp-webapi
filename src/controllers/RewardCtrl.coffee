@@ -1,33 +1,28 @@
 Reward = require '../models/Reward'
+Receipt = require '../models/Receipt'
+{uidCaps} = require '../utils/utils'
 
 class RewardCtrl
-	@getAll: (req, res, next) ->
-		Reward.find {}, '-_id -__v', (err, list) ->
+	@getRewards: (req, res) ->
+		Reward.find {}, '-__v', (err, list) ->
 			res.send list
 
-		next()
+	@getRewardsByAffiliate: (req, res) ->
+		Reward.find affiliate: req.body.affiliate, '-__v', (err, list) ->
+			res.send list
 
-	@setUp: (req, res, next) ->
-		Reward.find (err, list) ->
-			if list.length < 1
-				rewards = [
-					new Reward { id: mongoose.Types.ObjectId(), name: 'This is a reward', price: '15', points: 35, description: '', img: 'http://placehold.it/50x50' }
-					new Reward { id: mongoose.Types.ObjectId(), name: 'Freezer', price: '300', points: 325, description: '', img: 'http://placehold.it/50x50' },
-					new Reward { id: mongoose.Types.ObjectId(), name: 'Oven', price: '150', points: 150, description: '', img: 'http://placehold.it/50x50' },
-					new Reward { id: mongoose.Types.ObjectId(), name: 'Ants Case', price: '23', points: 52, description: '', img: 'http://placehold.it/50x50' },
-					new Reward { id: mongoose.Types.ObjectId(), name: 'Hawaiian Pizza', price: '6', points: 20, description: '', img: 'http://placehold.it/50x50' },
-					new Reward { id: mongoose.Types.ObjectId(), name: 'Soda', price: '1.50', points: 12, description: '', img: 'http://placehold.it/50x50' },
-					new Reward { id: mongoose.Types.ObjectId(), name: 'Toothpaste', price: '0.75', points: 5, description: '', img: 'http://placehold.it/50x50' }
-				]
-				
-				for reward in rewards			
-					reward.save()
+	@buyReward: (req, res) ->
+		Reward.findOne _id: req.params.id, (err, reward) ->
+			if err then return res.send err
+			if not reward?
+				return res.send errors: reward: type: 'reward does not exist', value: req.params.reward
+			receipt = new Receipt()
+			receipt.user = req.user.id
+			receipt.reward = reward.id
+			receipt.code = "CRP#{uidCaps(8)}R"
 
-				res.send 'Success'
-			else
-				res.send 'Already initialized'
-
-		next()
-
+			receipt.save (err) ->
+				if err then return res.send err
+				res.send receipt: id: receipt.id
 
 module.exports = RewardCtrl
