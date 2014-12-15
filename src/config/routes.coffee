@@ -40,6 +40,7 @@ router.route '/reward/:id/buy'
 
 # Points
 router.route '/points'
+  .get PointsCtrl.getPoints
   .post PointsCtrl.postPoints
 
 router.route '/points/:code'

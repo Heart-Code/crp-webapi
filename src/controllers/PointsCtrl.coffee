@@ -4,6 +4,10 @@ Affiliate = require '../models/Affiliate'
 MongooseError = require 'mongoose/lib/error'
 
 class PointsCtrl
+  @getPoints: (req, res) ->
+    Points.find user: undefined, (err, points) ->
+      if err then return res.send err
+      res.send points
   @postPoints: (req, res) ->
     Affiliate.findOne _id: req.body.affiliate, (err, affiliate) ->
       if err then return res.send err
